@@ -1,3 +1,5 @@
+[TOC]
+
 # Windows平台下
 
 ## Vim的安装
@@ -343,4 +345,239 @@ set nofoldenable
 | za   | 打开或关闭当前折叠 |
 | zM   | 关闭所有折叠       |
 | zR   | 打开所有折叠       |
+
+---
+
+---
+
+## 在Vim中安装并使用插件
+
+### ★★★插件管理工具——Vundle★★★
+
+**以下介绍的所有插件都是利用Vundle工具进行安装的** 
+
+[Vundle](https://github.com/VundleVim/Vundle.vim)是一个Vim插件管理器，用于方便地安装、更新和卸载插件。且其本身就是一个插件。
+
+####  安装Vundle
+
+Vundle基于Git架构，每一个插件都是一个项目的Repository，通过Vundle可以用简单的指令，可以一键安装/更新/删除所有插件
+
+安装有两种方式：
+
+1.在 https://github.com/VundleVim/Vundle.vim.git 下载 Vundle.vim 文件保存到 `vim安装目录/vimfiles/vundle` 下即可。
+
+2.使用git的安装（推荐）
+
+**首先要下载 Git** ，下载地址：https://gitforwindows.org/
+
+安装完毕后**配置环境变量**（如果不知道环境变量是什么，请使用搜索引擎搜索），完成后运行CMD输入以下命令：`git --version` 若成功打印出版本信息则说明安装成功
+
+然后执行以下命令将 Vundle 安装到指定目录
+
+`git clone https://github.com/VundleVim/Vundle.vim.git vim安装目录/vimfiles/vundle/Vundle.vim`
+
+**必须要安装Git并且配置环境变量成功才能执行！** 
+
+例如：
+
+```bash
+git clone https://github.com/VundleVim/Vundle.vim.git "D:\Program Files\Vim\vimfiles\vundle\Vundle"
+```
+
+记得安装目录中如果带有空格需要加上引号，因此也建议在所有的路径字符串中加上引号
+
+值得注意的是，在Git中自带了一个Vim编辑器
+
+#### 配置Vundle
+
+无论以何种方式安装，都需要进行如下配置
+
+在vimrc中将如下配置模板粘贴进去
+
+```bash
+"==================================Vundle插件管理器的配置=================================="
+
+set nocompatible               "去除VIM一致性，必须"
+filetype off                   "必须"
+
+"设置包括vundle和初始化相关的运行时路径"
+set rtp+=$VIM/vimfiles/vundle/Vundle
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'	"启用vundle管理插件，必须"
+
+"在此增加其他插件，安装的插件需要放在vundle#begin和vundle#end之间"
+"安装github上的插件格式为 Plugin '用户名/插件仓库名'"
+
+ call vundle#end()
+ 
+filetype plugin indent on     "加载vim自带和插件相应的语法和文件类型相关脚本，必须"
+
+"==================================Vundle插件管理器的配置=================================="
+```
+
+
+
+#### 安装插件
+
+**注意事项：**安装的路径一定要设置好，==第七行的 `set rtp=` 后接的是你的Vundle的安装路径==，你可以在使用Git安装Vundle的时候指定其它路径比如在Vundle：
+
+**第一步**，配置。在模板中，把要安装的插件按此格式：`Plugin '需要安装的插件'` 添加到`call vundle#begin() `和 `call vundle#end()` 之间，也就是第8行到第16行之间即可完成第一步的配置工作
+
+例如：
+
+```bash
+"==================================Vundle插件管理器的配置=================================="
+
+set nocompatible               "去除VIM一致性，必须"
+filetype off                   "必须"
+
+"设置包括vundle和初始化相关的运行时路径"
+set rtp+=$VIM/vimfiles/vundle/Vundle
+call vundle#begin('$VIM/vimfiles/vundle/')
+
+Plugin 'VundleVim/Vundle.vim'	"启用vundle管理插件，必须"
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'Chiel92/vim-autoformat'
+
+"在此增加其他插件，安装的插件需要放在vundle#begin和vundle#end之间"
+"安装github上的插件格式为 Plugin '用户名/插件仓库名'"
+
+ call vundle#end()
+ 
+filetype plugin indent on     "加载vim自带和插件相应的语法和文件类型相关脚本，必须"
+
+"==================================Vundle插件管理器的配置=================================="
+```
+
+追加了两条Plugin即可完成配置
+
+**第二步**，安装。
+
+在vim中执行 `PluginInstall` 命令即可自动完成所有插件的安装
+
+**其它安装方式**
+
+或者，你也可以在vim下使用 `:PluginInstall 插件名` 命令来直接安装
+
+例如：`:PluginInstall Valloric/YouCompleteMe` 
+
+
+
+#### 卸载插件
+
+先在[vimrc](https://link.zhihu.com/?target=http%3A//yyq123.blogspot.com/2012/01/vim-vimrc.html)配置文件中注释或者删除对应插件的配置信息，执行：
+
+`PluginClean`
+
+即可删除指定插件
+
+#### 更新插件
+
+自动批量更新所有已安装的插件命令：
+
+`PluginUpdate`
+
+使用以下命令，可以查看更多帮助信息：
+
+`:help vundle`
+
+#### 其它关于配置的说明
+
+`call vundle#begin()`的括号中可以填写其它插件在安装时的安装路径，例如我设置的路径是：``$VIM/vimfiles/vundle/Plugin`。`$VIM`表示vim的安装目录
+
+对于Vundle和Plugin的安装路径，完全是自由的，可以自己选择其位置。
+
+---
+
+### 史诗级代码补全插件——YouCompleteMe
+
+#### 安装前的准备
+
+YCM是一个用于自动代码补全的神器，它**基于语义分析**补齐：通过分析源文件，经过语法分析以后进行智能补全。YCM几乎对现在所有流行的编程语言都提供了非常强大的补齐功能
+
+它不仅强大，同时也是传说中Vim上最难安装的插件。
+
+在Windows下，安装YCM之前，你的电脑应该存在有如下的环境：
+
+- Python2 or Python3 (**必须使用和你使用的vim所支持的python版本以及和vim架构一致的版本**，比如，vim是64bit的，且支持python3，那么你的python也必须是python3.* 64bit 的)
+  在此处：https://www.python.org/downloads/windows/
+- Visual Studio（需要安装了*开发窗口桌面程序*）
+  在此处安装最新版或旧版本https://visualstudio.microsoft.com/zh-hans/vs/older-downloads/
+- cmake（需要配置到系统环境变量中）
+  在此处：https://cmake.org/download/
+  如果的VS中安装了cmake，也可以直接使用VS中的cmake，只需要将环境变量配置好即可
+
+对于Vim，你的Vim必须支持Python2或Python3，要查看是否支持，在vim中输入命令 `:version` 即可查看，如果支持，你应该可以在列表中查看到类似 `+python2/dyn` `+python3/dyn` 的字样，若前面的符号是 - ，则说明不支持，请重新安装或编译你的vim，如果你在安装vim选择组件的过程中选择了完整安装，那么应该是支持的。
+
+#### 下载源码
+
+可以使用Git来进行安装，但本文仅介绍使用Vundle的方式。
+
+YCM的git地址:https://github.com/ycm-core/YouCompleteMe
+
+在 vimrc 中 Vundle 的配置部分中添加 `Plugin 'Valloric/YouCompleteMe'` 然后在 Vim 中执行安装命令即可下载YCM的源码。下载过程可能会比较长。
+
+在下载完源码后，在**YCM的源码目录**运行 `git submodule update --init --recursive` 来获取 YouCompleteMe 必要的相关依赖。同样下载过程可能会比较长。
+
+#### 编译源码
+
+本文只介绍最简单的编译方式，详细请参考 [YCM](https://github.com/ycm-core/YouCompleteMe) 
+
+**下载完毕后，在源码目录执行**
+
+`python install.py --语言选项 --msvc **`编译。
+
+对于语言选项，有如下选项：
+
+- C-family languages support：`--clangd-completer`
+- C# support: install Mono and add `--cs-completer` 
+- Go support: install [Go](https://golang.org/doc/install) and add `--go-completer`
+- JavaScript and TypeScript support: install [Node.js and npm](https://docs.npmjs.com/getting-started/installing-node#1-install-nodejs--npm) and add `--ts-completer` 
+- Rust support:  `--rust-completer` 
+- Java support: install [JDK8 (version 8 required)](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) and add `--java-completer`
+
+**例如：**`python install.py --clangd-completer`
+
+即可编译具有C族语言的语义补全功能的 YouCompleteMe 插件。
+
+对于 -msvc 选项，你需要指定你的VS版本，其默认值是16。
+
+YCM支持MSVC 14（Visual Studio 2015），15（2017）和MSVC 16（Visual Studio 2019）
+
+#### 编译命令举例
+
+例如，我的python版本是**python3.8**，我想要编译**带有C族语义补全功能的YCM插件**且我的**VS版本是2017**，那么我的编译命令应该是
+
+`python install.py --clangd-completer --msvc 15`
+
+在YCM源码目录执行即可。
+
+#### 编译完成后的配置
+
+此处暂仅给出一个样例
+
+```bash
+"==================================YCP插件的配置=================================="
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_server_log_level = 'info'
+let g:ycm_min_num_identifier_candidate_chars = 2
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_complete_in_strings=1
+let g:ycm_key_invoke_completion = '<c-z>'
+set completeopt=menu,menuone
+
+noremap <c-z> <NOP>
+
+let g:ycm_semantic_triggers =  {
+           \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+           \ 'cs,lua,javascript': ['re!\w{2}'],
+           \ }
+
+"设置补全菜单的颜色"
+highlight PMenu ctermfg=0 ctermbg=242 guifg=black guibg=darkgrey
+highlight PMenuSel ctermfg=242 ctermbg=8 guifg=darkgrey guibg=black
+"==================================YCP插件的配置=================================="
+```
 
