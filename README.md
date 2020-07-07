@@ -1,14 +1,55 @@
-[TOC]
+* [Windows平台下](#windows%E5%B9%B3%E5%8F%B0%E4%B8%8B)
+  * [1\. Vim的安装](#1-vim%E7%9A%84%E5%AE%89%E8%A3%85)
+    * [1\.1 在windows平台下安装vim](#11-%E5%9C%A8windows%E5%B9%B3%E5%8F%B0%E4%B8%8B%E5%AE%89%E8%A3%85vim)
+  * [2\. Vim的四种模式](#2-vim%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%A8%A1%E5%BC%8F)
+  * [3\. Vimrc文件的配置](#3-vimrc%E6%96%87%E4%BB%B6%E7%9A%84%E9%85%8D%E7%BD%AE)
+    * [3\.1 设置文件编码](#31-%E8%AE%BE%E7%BD%AE%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81)
+    * [3\.2 显示行号](#32-%E6%98%BE%E7%A4%BA%E8%A1%8C%E5%8F%B7)
+    * [3\.3 突出显示当前行](#33-%E7%AA%81%E5%87%BA%E6%98%BE%E7%A4%BA%E5%BD%93%E5%89%8D%E8%A1%8C)
+    * [3\.4 突出显示当前列](#34-%E7%AA%81%E5%87%BA%E6%98%BE%E7%A4%BA%E5%BD%93%E5%89%8D%E5%88%97)
+    * [3\.5 设置突出显示行|列的颜色](#35-%E8%AE%BE%E7%BD%AE%E7%AA%81%E5%87%BA%E6%98%BE%E7%A4%BA%E8%A1%8C%E5%88%97%E7%9A%
+      84%E9%A2%9C%E8%89%B2)
+    * [3\.6 在Vim中启用鼠标](#36-%E5%9C%A8vim%E4%B8%AD%E5%90%AF%E7%94%A8%E9%BC%A0%E6%A0%87)
+    * [3\.7 "显示括号匹配"](#37-%E6%98%BE%E7%A4%BA%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D)
+    * [3\.8 括号自动匹配](#38-%E6%8B%AC%E5%8F%B7%E8%87%AA%E5%8A%A8%E5%8C%B9%E9%85%8D)
+    * [3\.9 设置缩进](#39-%E8%AE%BE%E7%BD%AE%E7%BC%A9%E8%BF%9B)
+    * [3\.10 设置粘贴模式](#310-%E8%AE%BE%E7%BD%AE%E7%B2%98%E8%B4%B4%E6%A8%A1%E5%BC%8F)
+    * [3\.11 设置非可见字符(tab|空格)可见](#311-%E8%AE%BE%E7%BD%AE%E9%9D%9E%E5%8F%AF%E8%A7%81%E5%AD%97%E7%AC%A6tab%E7%A9
+      %BA%E6%A0%BC%E5%8F%AF%E8%A7%81)
+    * [3\.12 状态行的设置](#312-%E7%8A%B6%E6%80%81%E8%A1%8C%E7%9A%84%E8%AE%BE%E7%BD%AE)
+    * [3\.13 显示光标当前位置](#313-%E6%98%BE%E7%A4%BA%E5%85%89%E6%A0%87%E5%BD%93%E5%89%8D%E4%BD%8D%E7%BD%AE)
+    * [3\.14 打开文件类型检测](#314-%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%B5%8B)
+    * [3\.15 ★重要·打开语法高亮显示★](#315-%E9%87%8D%E8%A6%81%E6%89%93%E5%BC%80%E8%AF%AD%E6%B3%95%E9%AB%98%E4%BA%AE%E
+      6%98%BE%E7%A4%BA)
+    * [3\.16 代码折叠](#316-%E4%BB%A3%E7%A0%81%E6%8A%98%E5%8F%A0)
+  * [3\. 在Vim中安装并使用插件](#3-%E5%9C%A8vim%E4%B8%AD%E5%AE%89%E8%A3%85%E5%B9%B6%E4%BD%BF%E7%94%A8%E6%8F%92%E4%BB%B6)
+* [3\.1 ★★★插件管理工具——Vundle★★★](#31-%E6%8F%92%E4%BB%B6%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7vundle)
+      * [3\.1\.1 安装Vundle](#311-%E5%AE%89%E8%A3%85vundle)
+      * [3\.1\.2 配置Vundle](#312-%E9%85%8D%E7%BD%AEvundle)
+      * [3\.1\.3 安装插件](#313-%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6)
+      * [3\.1\.4 卸载插件](#314-%E5%8D%B8%E8%BD%BD%E6%8F%92%E4%BB%B6)
+      * [3\.1\.5 更新插件](#315-%E6%9B%B4%E6%96%B0%E6%8F%92%E4%BB%B6)
+      * [3\.1\.6 其它关于配置的说明](#316-%E5%85%B6%E5%AE%83%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AE%E7%9A%84%E8%AF%B4%E6%98
+    %8E)
+* [3\.2 史诗级代码补全插件——YouCompleteMe](#32-%E5%8F%B2%E8%AF%97%E7%BA%A7%E4%BB%A3%E7%A0%81%E8%A1%A5%E5%85%A8%E6%
+  8F%92%E4%BB%B6youcompleteme)
+  * [3\.2\.1 安装前的准备](#321-%E5%AE%89%E8%A3%85%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87)
+    * [3\.2\.2 下载源码](#322-%E4%B8%8B%E8%BD%BD%E6%BA%90%E7%A0%81)
+    * [3\.2\.3 编译源码](#323-%E7%BC%96%E8%AF%91%E6%BA%90%E7%A0%81)
+    * [3\.2\.4 编译命令举例](#324-%E7%BC%96%E8%AF%91%E5%91%BD%E4%BB%A4%E4%B8%BE%E4%BE%8B)
+    * [编译完成后的配置](#%E7%BC%96%E8%AF%91%E5%AE%8C%E6%88%90%E5%90%8E%E7%9A%84%E9%85%8D%E7%BD%AE)
+
+
 
 # Windows平台下
 
-## Vim的安装
+## 1. Vim的安装
 
 安装过程比较简单
 
 [单击此处打开 Vim 的官网](https://www.vim.org/) 
 
-#### 	在windows平台下安装vim
+#### 	1.1 在windows平台下安装vim
 
 在此链接中选择合适自己的版本进行下载。https://github.com/vim/vim-win32-installer/releases
 
@@ -18,7 +59,7 @@ GVim是Vim的图形前端。
 
 在安装过程中，选择组件时建议**选择完整安装**，其余选项均保持默认即可。
 
-## Vim的四种模式
+## 2. Vim的四种模式
 
 - 正常模式：
 
@@ -71,14 +112,15 @@ GVim是Vim的图形前端。
 
     也就是说，**REPLACE将Tab只当作一个字符（整体）来看，而VREPLACE则将Tab当作多个空格来看** 
 
-## Vimrc文件的配置
+## 3. Vimrc文件的配置
 
 说明：
 
-- **以下配置均可以在vim的命令模式下手动开启或关闭** 
-  _vimrc文件是vim的配置文件，其**位置就在vim的安装目录**下。
+- **以下配置均可以在vim的命令模式下手动开启或关闭**，
   在命令模式下输入命令前首先输入 ：
-  但不修改配置文件的话只会**对当前vim编辑窗口生效**，重启即无效
+  但**不修改**配置文件，只会**对当前vim编辑窗口生效**，重启即无效
+
+- _vimrc文件是vim的配置文件，修改它就可以修改vim的一些默认配置，比如语法高亮，缩进长度等。其**位置就在vim的安装目录**下。
 
 - 以下配置均只做**简单**但较为实用的介绍或配置，仅适合新手作为一个上手
 
@@ -102,7 +144,7 @@ GVim是Vim的图形前端。
 
 以下是一些常用配置及其中文说明
 
-### 1. 设置文件编码
+### 3.1 设置文件编码
 
 若打开文件时中文显示乱码，则通过以下配置修改文件的编码，仅作示例
 
@@ -112,7 +154,7 @@ set termencoding=utf-8
 set encoding=utf-8
 ```
 
-### 2.显示行号
+### 3.2 显示行号
 
 ```bash
 set nu
@@ -128,7 +170,7 @@ set nonu
 set nonumber
 ```
 
-### 3.突出显示当前行
+### 3.3 突出显示当前行
 
 ```bash
 set cursorline
@@ -137,14 +179,14 @@ set cul
 
 cul是cursorline的缩写
 
-### 4.突出显示当前列
+### 3.4 突出显示当前列
 
 ```bash
 set cursorcolumn
 set cuc
 ```
 
-### 5.设置突出显示行|列的颜色
+### 3.5 设置突出显示行|列的颜色
 
 vim中高亮行的默认颜色为darkred（深红）
 
@@ -169,7 +211,7 @@ black, brown, grey, blue, green, cyan, magenta, yellow, white，darkgrey
 
 
 
-### 6.在Vim中启用鼠标
+### 3.6 在Vim中启用鼠标
 
 貌似不使用这个设置也能使用鼠标
 
@@ -182,7 +224,7 @@ black, brown, grey, blue, green, cyan, magenta, yellow, white，darkgrey
 
 
 
-### 7."显示括号匹配"
+### 3.7 "显示括号匹配"
 
 ```bash
 set sm
@@ -197,7 +239,7 @@ set matchtime=1  "单位是十分之一秒"
 
 
 
-### 8.括号自动匹配
+### 3.8 括号自动匹配
 
 ```bash
 inoremap ( ()<LEFT>
@@ -217,7 +259,7 @@ inoremap ' ''<LEFT>
 
 当然，更实用的方式是使用插件 [delimitMate](https://github.com/Raimondi/delimitMate),该插件对括号补全有一个最实用的功能：在一对括号之间回车，自动分为 3 行并调整缩进
 
-### 9.设置缩进
+### 3.9 设置缩进
 
 ```bash
 set tabstop=4 "tab的长度"
@@ -235,7 +277,7 @@ set smartindent 	"设置自动缩进的方式为此"
 - set smartindent
   在这种缩进模式中，每一行都和前一行有相同的缩进量，同时这种缩进形式能正确的识别出花括号，当遇到右花括号（}），则取消缩进形式。此外还增加了识别C语言关键字的功能。如果一行是以#开头的，那么这种格式将会被特殊对待而不采用缩进格式。
 
-### 10.设置粘贴模式
+### 3.10 设置粘贴模式
 
 ```bash
 "set paste" "使用此设置，通过鼠标右键粘贴时不会变更格式"
@@ -244,7 +286,7 @@ set pastetoggle=<F9>	"在插入模式下，按F9自动切换粘贴模式"
 
 
 
-### 11.设置非可见字符(tab|空格)可见
+### 3.11 设置非可见字符(tab|空格)可见
 
 **显示非可见字符**
 
@@ -278,7 +320,7 @@ hi SpecialKey guifg=darkgrey ctermfg=darkgrey
 
 对于样式的更详细配置参考：https://segmentfault.com/a/1190000021101602
 
-### 12.状态行的设置
+### 3.12 状态行的设置
 
 ```bash
 "设置显示当前文件名(%t)，是否修改过(%m,若修改过会显示+号),文件总行数，当前行占比和光标位置。
@@ -289,7 +331,7 @@ set laststatus=2
 
 关于状态行的更多设置和选项本人认为过于冗余本文不做描述
 
-### 13.显示光标当前位置
+### 3.13 显示光标当前位置
 
 该命令不能与状态行同时使用，同时本人建议只使用该选项而不开启状态行，或两者都不使用，是否使用根据个人习惯而定
 
@@ -299,7 +341,7 @@ set ruler
 
 
 
-### 14.打开文件类型检测
+### 3.14 打开文件类型检测
 
 ```bash
 "打开文件类型检测"
@@ -310,7 +352,7 @@ set ruler
 
 对于该配置建议阅读：https://vimjc.com/vim-filetype.html
 
-### 15.★重要·打开语法高亮显示★ 
+### 3.15 ★重要·打开语法高亮显示★ 
 
 ```bash
 " 打开语法高亮显示 "
@@ -321,7 +363,7 @@ syntax on
 
 
 
-### 16.代码折叠
+### 3.16 代码折叠
 
 Vim支持多种折叠形式：手动折叠**manual**、基于缩进行折叠**indent**、基于语法进行折叠**syntax**、未更改文本折叠**diff**等
 
@@ -350,15 +392,15 @@ set nofoldenable
 
 ---
 
-## 在Vim中安装并使用插件
+## 3. 在Vim中安装并使用插件
 
-### ★★★插件管理工具——Vundle★★★
+### 3.1 ★★★插件管理工具——Vundle★★★
 
 **以下介绍的所有插件都是利用Vundle工具进行安装的** 
 
 [Vundle](https://github.com/VundleVim/Vundle.vim)是一个Vim插件管理器，用于方便地安装、更新和卸载插件。且其本身就是一个插件。
 
-####  安装Vundle
+####  3.1.1 安装Vundle
 
 Vundle基于Git架构，每一个插件都是一个项目的Repository，通过Vundle可以用简单的指令，可以一键安装/更新/删除所有插件
 
@@ -388,7 +430,7 @@ git clone https://github.com/VundleVim/Vundle.vim.git "D:\Program Files\Vim\vimf
 
 值得注意的是，在Git中自带了一个Vim编辑器
 
-#### 配置Vundle
+#### 3.1.2 配置Vundle
 
 无论以何种方式安装，都需要进行如下配置
 
@@ -418,7 +460,7 @@ filetype plugin indent on     "加载vim自带和插件相应的语法和文件�
 
 
 
-#### 安装插件
+#### 3.1.3 安装插件
 
 **注意事项：**安装的路径一定要设置好，==第七行的 `set rtp=` 后接的是你的Vundle的安装路径==，你可以在使用Git安装Vundle的时候指定其它路径比如在Vundle：
 
@@ -464,7 +506,7 @@ filetype plugin indent on     "加载vim自带和插件相应的语法和文件�
 
 
 
-#### 卸载插件
+#### 3.1.4 卸载插件
 
 先在[vimrc](https://link.zhihu.com/?target=http%3A//yyq123.blogspot.com/2012/01/vim-vimrc.html)配置文件中注释或者删除对应插件的配置信息，执行：
 
@@ -472,7 +514,7 @@ filetype plugin indent on     "加载vim自带和插件相应的语法和文件�
 
 即可删除指定插件
 
-#### 更新插件
+#### 3.1.5 更新插件
 
 自动批量更新所有已安装的插件命令：
 
@@ -482,7 +524,7 @@ filetype plugin indent on     "加载vim自带和插件相应的语法和文件�
 
 `:help vundle`
 
-#### 其它关于配置的说明
+#### 3.1.6 其它关于配置的说明
 
 `call vundle#begin()`的括号中可以填写其它插件在安装时的安装路径，例如我设置的路径是：``$VIM/vimfiles/vundle/Plugin`。`$VIM`表示vim的安装目录
 
@@ -490,9 +532,9 @@ filetype plugin indent on     "加载vim自带和插件相应的语法和文件�
 
 ---
 
-### 史诗级代码补全插件——YouCompleteMe
+### 3.2 史诗级代码补全插件——YouCompleteMe
 
-#### 安装前的准备
+#### 3.2.1 安装前的准备
 
 YCM是一个用于自动代码补全的神器，它**基于语义分析**补齐：通过分析源文件，经过语法分析以后进行智能补全。YCM几乎对现在所有流行的编程语言都提供了非常强大的补齐功能
 
@@ -510,7 +552,7 @@ YCM是一个用于自动代码补全的神器，它**基于语义分析**补齐�
 
 对于Vim，你的Vim必须支持Python2或Python3，要查看是否支持，在vim中输入命令 `:version` 即可查看，如果支持，你应该可以在列表中查看到类似 `+python2/dyn` `+python3/dyn` 的字样，若前面的符号是 - ，则说明不支持，请重新安装或编译你的vim，如果你在安装vim选择组件的过程中选择了完整安装，那么应该是支持的。
 
-#### 下载源码
+#### 3.2.2 下载源码
 
 可以使用Git来进行安装，但本文仅介绍使用Vundle的方式。
 
@@ -520,7 +562,7 @@ YCM的git地址:https://github.com/ycm-core/YouCompleteMe
 
 在下载完源码后，在**YCM的源码目录**运行 `git submodule update --init --recursive` 来获取 YouCompleteMe 必要的相关依赖。同样下载过程可能会比较长。
 
-#### 编译源码
+#### 3.2.3 编译源码
 
 本文只介绍最简单的编译方式，详细请参考 [YCM](https://github.com/ycm-core/YouCompleteMe) 
 
@@ -545,7 +587,7 @@ YCM的git地址:https://github.com/ycm-core/YouCompleteMe
 
 YCM支持MSVC 14（Visual Studio 2015），15（2017）和MSVC 16（Visual Studio 2019）
 
-#### 编译命令举例
+#### 3.2.4 编译命令举例
 
 例如，我的python版本是**python3.8**，我想要编译**带有C族语义补全功能的YCM插件**且我的**VS版本是2017**，那么我的编译命令应该是
 
