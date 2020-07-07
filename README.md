@@ -551,6 +551,8 @@ filetype plugin indent on     "加载vim自带和插件相应的语法和文件�
 
 ## 4.2 史诗级代码补全插件——YouCompleteMe
 
+
+
 ### 4.2.1 安装前的准备
 
 YCM是一个用于自动代码补全的神器，它**基于语义分析**补齐：通过分析源文件，经过语法分析以后进行智能补全。YCM几乎对现在所有流行的编程语言都提供了非常强大的补齐功能
@@ -569,6 +571,8 @@ YCM是一个用于自动代码补全的神器，它**基于语义分析**补齐�
 
 对于Vim，你的Vim必须支持Python2或Python3，要查看是否支持，在vim中输入命令 `:version` 即可查看，如果支持，你应该可以在列表中查看到类似 `+python2/dyn` `+python3/dyn` 的字样，若前面的符号是 - ，则说明不支持，请重新安装或编译你的vim，如果你在安装vim选择组件的过程中选择了完整安装，那么应该是支持的。
 
+
+
 ### 4.2.2 下载源码
 
 可以使用Git来进行安装，但本文仅介绍使用Vundle的方式。
@@ -578,6 +582,8 @@ YCM的git地址:https://github.com/ycm-core/YouCompleteMe
 在 vimrc 中 Vundle 的配置部分中添加 `Plugin 'Valloric/YouCompleteMe'` 然后在 Vim 中执行安装命令即可下载YCM的源码。下载过程可能会比较长。
 
 在下载完源码后，在**YCM的源码目录**运行 `git submodule update --init --recursive` 来获取 YouCompleteMe 必要的相关依赖。同样下载过程可能会比较长。
+
+
 
 ### 4.2.3 编译源码
 
@@ -603,6 +609,8 @@ YCM的git地址:https://github.com/ycm-core/YouCompleteMe
 对于 -msvc 选项，你需要指定你的VS版本，其默认值是16。
 
 YCM支持MSVC 14（Visual Studio 2015），15（2017）和MSVC 16（Visual Studio 2019）
+
+
 
 ### 4.2.4 编译命令举例
 
@@ -648,11 +656,17 @@ highlight PMenuSel ctermfg=242 ctermbg=8 guifg=darkgrey guibg=black
 
 ---
 
+
+
 ## 4.3 代码自动格式化插件——vim-autoformat
 
 ### 4.3.1 插件安装
 
 在Vundle中添加 `Chiel92/vim-autoformat` 字段，运行安装命令即可。于YCM的安装时需要的支持一样，该插件==**需要vim对python**==的支持。
+
+---
+
+
 
 ### 4.3.2 插件介绍
 
@@ -668,9 +682,15 @@ highlight PMenuSel ctermfg=242 ctermbg=8 guifg=darkgrey guibg=black
 
 **而且你必须会简单的使用代码格式化工具才能知道如何更好的使用该插件，因此，接下来首先介绍代码格式化工具——clang-format**。
 
+
+
 ### 4.3.3 下载并使用clang-format
 
 **如果你已经会使用 clang-format 或其它的代码格式化工具了，请直接跳过本节，到 4.3.4 节阅读vim-autoformat的配置教程。** 
+
+---
+
+
 
 #### 4.3.3.1 LLVM和Clang
 
@@ -698,6 +718,10 @@ highlight PMenuSel ctermfg=242 ctermbg=8 guifg=darkgrey guibg=black
 
 本人安装的版本是：[Windows (64-bit)](https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/LLVM-10.0.0-win64.exe) 单击此链接可以直接下载，不需要下载 .sig 文件
 
+---
+
+
+
 #### 4.3.3.2 单独下载clang-format工具
 
 **因为`clang-format`是`clang`的一部分，所以事实上直接安装`clang`是最简单的方法。**
@@ -717,6 +741,10 @@ clang-format工具的单独下载地址：https://llvm.org/builds/
 你当然也可以把下载并重命名好的 clang-format.exe 也直接丢在 C:\Windows\ 目录下，即可在命令行中使用它，但我不建议这么做。你应该自己新建一个文件夹然后将文件夹的路径添加到环境变量的Path中去。
 
 **比如，在D盘中新建一个文件夹 ClangFormat ，然后把重命名后的 `clang-format.exe` 放进去，再在环境变量的Path中添加如下字段：`D:\ClangFormat`** 。
+
+---
+
+
 
 #### 4.3.3.3 clang-format的简单命令
 
@@ -794,6 +822,8 @@ clang-format工具的单独下载地址：https://llvm.org/builds/
 
 ---
 
+
+
 ### 4.3.4 vim-autoformat的使用和配置
 
 要执行格式化命令，在vim中执行`:Autoformat`  即可
@@ -845,6 +875,10 @@ let g:formatters_h = ['clangformat_Microsoft']
   就为文件类型为 `.cpp` 和 `.cc` 的文件指定了名为 `clangformat_Microsoft` 的格式变量，在调用 `Autoformat` 命令时，将为这两个类型的文件使用该格式变量的格式。
 
 对于vim-autoformat的更多配置选项，请参阅官方文档：https://github.com/Chiel92/vim-autoformat
+
+---
+
+---
 
 
 
