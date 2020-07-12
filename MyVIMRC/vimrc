@@ -1,0 +1,186 @@
+
+
+"设置编码"
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+set termencoding=utf-8
+set encoding=utf-8
+
+"开启256色支持"
+set t_Co=256          
+"设置配色方案"
+colorscheme gruvbox   
+
+"显示行号"
+set nu
+set number
+
+"突出显示当前行"
+set cursorline
+set cul
+
+		"突出显示当前列"
+		"set cursorcolumn"
+		"set cuc"
+
+		"启用鼠标"
+		"set mouse=a"
+		"set selection=exclusive"
+		"set selectmode=mouse,key"
+
+"显示括号匹配"
+set showmatch
+
+		"括号自动匹配添加"
+		"inoremap ( ()<LEFT>
+		"inoremap { {}<LEFT>
+		"inoremap [ []<LEFT>
+		"引号自动匹配添加"
+		"inoremap " ""<LEFT>
+		"inoremap ' ''<LEFT>
+
+"设置缩进"
+set tabstop=2 "tab的长度"
+set shiftwidth=2 "自动缩进的长度"
+set smartindent 	"设置自动缩进的方式为此"
+
+
+"设置粘贴模式"
+		"set paste "使用此设置，通过鼠标右键粘贴时不会变更格式"
+set pastetoggle=<F9>	"在插入模式下，按F9自动切换粘贴模式
+
+		"显示空格和tab"
+		"set list	"设置为可见，否则就算修改了也不可见"
+"修改空格和tab的可见字符"
+set listchars=tab:>-,trail:-
+
+
+		"设置显示当前文件名(%t)，是否修改过(%m,若修改过会显示+号),文件总行数，当前行占比和光标位置。
+		"set statusline=%t%m\ LEN=%L\ [%p%%]\ %c,%l
+"总是显示状态行"
+"set laststatus=2
+
+
+"显示光标当前位置"
+set ruler
+
+
+"打开文件类型检测"
+"filetype plugin indent on"
+
+" 打开文件类型检测 "
+"filetype on"
+" 打开语法高亮显示 "
+syntax on
+
+"设置代码折叠"
+set foldmethod=syntax
+"启动 Vim 时关闭折叠"
+set nofoldenable
+
+
+
+"==================================Vundle插件管理器的配置=================================="
+
+set nocompatible               "去除VIM一致性，必须"
+filetype off                   "必须"
+
+"设置包括vundle和初始化相关的运行时路径"
+set rtp+=$VIM/vimfiles/Vundle/Vundle.vim/
+call vundle#begin('$VIM/vimfiles/Vundle/')
+
+"在此增加其他插件，安装的插件需要放在vundle#begin和vundle#end之间"
+
+Plugin 'VundleVim/Vundle.vim'			"启用vundle管理插件，必须"
+
+Plugin 'Valloric/YouCompleteMe'					"代码自动补全"
+Plugin 'Chiel92/vim-autoformat'					"自动格式化"
+Plugin 'Raimondi/delimitMate'					"括号自动匹配补全"
+
+	"Plugin 'kien/rainbow_parentheses.vim'" 	"彩虹括号"
+Plugin 'Yggdroot/indentLine'					"显示缩进线1"
+	"Plugin 'nathanaelkane/vim-indent-guides'	"显示缩进线2"
+Plugin 'preservim/nerdcommenter'				"快速注释"
+
+Plugin 'vim-airline/vim-airline'				"状态栏美化"
+Plugin 'vim-airline/vim-airline-themes'			"状态栏美化主题"
+
+Plugin 'preservim/nerdtree'						"显示文件目录树"
+
+"在此增加其他插件，安装的插件需要放在vundle#begin和vundle#end之间"
+"安装github上的插件格式为 Plugin '用户名/插件仓库名'"
+
+call vundle#end()
+ 
+filetype plugin indent on     "加载vim自带和插件相应的语法和文件类型相关脚本，必须"
+
+"==================================Vundle插件管理器的配置=================================="
+
+"==================================YCP插件的配置=================================="
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_server_log_level = 'info'
+let g:ycm_min_num_identifier_candidate_chars = 2
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_complete_in_strings=1
+let g:ycm_key_invoke_completion = '<c-z>'
+set completeopt=menu,menuone
+
+noremap <c-z> <NOP>
+
+let g:ycm_semantic_triggers =  {
+           \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+           \ 'cs,lua,javascript': ['re!\w{2}'],
+           \ }
+
+"==================================YCP插件的配置=================================="
+
+"==================================vim-autoformat插件的配置=================================="
+"设置保存时自动格式化(*表示所有文件)"
+"au BufWrite * :Autoformat"
+
+au BufWrite *.cpp,*.hpp :Autoformat
+au BufWrite *.c,*.h :Autoformat
+
+"设置clang-format格式化,style后面的格式是VS的格式"
+"Always|Never"
+let g:formatdef_clangformat_VS = '"clang-format -style=google -"'
+
+let g:formatters_cpp = ['clangformat_VS']
+let g:formatters_cc = ['clangformat_VS']
+let g:formatters_hpp = ['clangformat_VS']
+let g:formatters_c = ['clangformat_VS']
+let g:formatters_h = ['clangformat_VS']
+
+
+"==================================vim-autoformat插件的配置=================================="
+
+"==================================delimitMate插件的配置=================================="
+
+set backspace=start,eol
+let delimitMate_expand_cr = 1 "需要backspace包含start,eol
+let delimitMate_expand_space = 1 "需要backspace包含start,eol
+
+"==================================delimitMate插件的配置=================================="
+
+
+
+"==================================vim-airline的配置=================================="
+
+let g:airline_theme='base16' "选择主题
+
+"开启选项卡显示所有缓冲区功能"
+let g:airline#extensions#tabline#enabled = 1
+"为标签行设置分隔符"
+let g:airline#extensions#tabline#left_sep = '>'
+let g:airline#extensions#tabline#left_alt_sep = '>'
+"使用路径格式化"
+let g:airline#extensions#tabline#formatter = 'default'
+
+"==================================vim-airline的配置=================================="
+
+
+"==================================NERDTree的配置=================================="
+nnoremap <leader>t :NERDTree<CR>	"设置开启目录树的快捷键为 \t"
+
+
+"==================================NERDTree的配置=================================="
